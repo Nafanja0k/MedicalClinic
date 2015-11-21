@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source name="MySQL - medicalclinic_new@localhost [2]" uuid="1fa1b7f4-afc1-4575-9c3f-c13fbee8597b">
+  <data-source name="MySQL - medicalclinic_new@localhost" uuid="4954a0b8-5794-4147-b2ca-5e8732432fc2">
     <database-info product="MySQL" version="5.7.9-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
@@ -96,7 +96,7 @@
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="27" parent="4" name="fk_record">
+      <foreign-key id="27" parent="4" name="record_details_patient_records__fk">
         <columns>record_id</columns>
         <ref-key>patient_records.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>

@@ -5,7 +5,11 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.diakin.medicalclinic.model.Patient;
+import ua.com.diakin.medicalclinic.model.Record;
+import ua.com.diakin.medicalclinic.model.Stuff;
+import ua.com.diakin.medicalclinic.repository.RecordRepository;
 import ua.com.diakin.medicalclinic.repository.PatientRepository;
+import ua.com.diakin.medicalclinic.repository.StuffRepository;
 
 import java.util.Collection;
 
@@ -16,15 +20,21 @@ import java.util.Collection;
 public class ClinicServiceImpl implements ClinicService{
 
     private PatientRepository patientRepository;
+    private StuffRepository stuffRepository;
+    private RecordRepository recordRepository;
 
     @Autowired
-    public ClinicServiceImpl(PatientRepository patientRepository){
+    public ClinicServiceImpl(PatientRepository patientRepository,
+                             StuffRepository stuffRepository,
+                             RecordRepository recordRepository){
         this.patientRepository = patientRepository;
+        this.stuffRepository = stuffRepository;
     }
 
+    //Patient
     @Override
     @Transactional(readOnly = true)
-    public Patient findOwnerById(int id) throws DataAccessException {
+    public Patient findPatientById(int id) throws DataAccessException {
         return patientRepository.findById(id);
     }
 
@@ -39,4 +49,36 @@ public class ClinicServiceImpl implements ClinicService{
     public Collection<Patient> findPatientByLastName(String lastName) throws DataAccessException {
         return patientRepository.findByLastName(lastName);
     }
+
+    //Stuff
+    @Override
+    @Transactional(readOnly = true)
+    public Stuff findStuffById(int id) throws DataAccessException {
+        return stuffRepository.findById(id);
+    }
+
+    @Override
+    @Transactional
+    public void saveStuff(Stuff stuff) throws DataAccessException {
+        stuffRepository.save(stuff);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Collection<Stuff> findStuffByLastName(String lastName) throws DataAccessException {
+        return stuffRepository.findByLastName(lastName);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Collection<Record> findByPatientId(int id) throws DataAccessException {
+        return recordRepository.findByPatientId(id);
+    }
+
+    @Override
+    @Transactional
+    public void saveRecord(Record record) throws DataAccessException {
+        recordRepository.save(record);
+    }
+
 }

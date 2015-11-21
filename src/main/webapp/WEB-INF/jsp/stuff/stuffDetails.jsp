@@ -15,38 +15,41 @@
 <div class="container">
     <jsp:include page="../fragments/bodyHeader.jsp"/>
 
-    <h2>Patient Information</h2>
+    <h2>Stuff Information</h2>
 
     <table class="table table-striped" style="width:600px;">
         <tr>
             <th>Name</th>
-            <td><b><c:out value="${patient.firstName} ${patient.middleName} ${patient.lastName}"/></b></td>
+            <td><b><c:out value="${stuff.firstName} ${stuff.middleName} ${stuff.lastName}"/></b></td>
         </tr>
+        <tr>
+            <th>Birth date</th>
+            <td><b><c:out value="${stuff.birthDate}"/></b></td>
+        </tr>
+
 <%--        <tr>
             <th>Address</th>
-            <td><c:out value="${patient.address}"/></td>
+            <td><c:out value="${stuff.address}"/></td>
         </tr>
         <tr>
             <th>City</th>
-            <td><c:out value="${patient.city}"/></td>
+            <td><c:out value="${stuff.city}"/></td>
         </tr>
         <tr>
             <th>Telephone</th>
-            <td><c:out value="${patient.telephone}"/></td>
+            <td><c:out value="${stuff.telephone}"/></td>
         </tr>--%>
         <tr>
             <td>
-                <spring:url value="{patientId}/edit.html" var="editUrl">
-                    <spring:param name="patientId" value="${patient.id}"/>
+                <spring:url value="{stuffId}/edit.html" var="editUrl">
+                    <spring:param name="stuffId" value="${stuff.id}"/>
                 </spring:url>
-                <a href="${fn:escapeXml(editUrl)}" class="btn btn-info">Edit Patient</a></td>
+                <a href="${fn:escapeXml(editUrl)}" class="btn btn-info">Edit Stuff</a></td>
             <td>
-                <spring:url value="{patientId}/records/new.html" var="addUrl">
-                    <spring:param name="patientId" value="${patient.id}"/>
-                </spring:url>
-                <a href="${fn:escapeXml(addUrl)}" class="btn btn-success">Add New Record</a></td>
+            </td>
         </tr>
     </table>
+
 
     <jsp:include page="../fragments/footer.jsp"/>
 

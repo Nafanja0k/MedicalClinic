@@ -59,7 +59,7 @@ public class PatientController {
 
     @RequestMapping(value = "/patients", method = RequestMethod.GET)
     public String processFindForm(Patient patient, BindingResult result, Map<String, Object> model) {
-        // allow parameterless GET request fo /owners to return all records
+        // allow parameterless GET request fo /patients to return all records
         if (patient.getLastName() == null) {
             patient.setLastName(""); //empty string signifies broadest possible search
         }
@@ -83,7 +83,7 @@ public class PatientController {
 
     @RequestMapping(value = "/patients/{patientId}/edit", method = RequestMethod.GET)
     public String initUpdatePatientForm(@PathVariable("patientId") int patientId, Model model) {
-        Patient patient = this.clinicService.findOwnerById(patientId);
+        Patient patient = this.clinicService.findPatientById(patientId);
         model.addAttribute(patient);
         return "patients/createOrUpdatePatientForm";
     }
@@ -100,15 +100,15 @@ public class PatientController {
     }
 
     /**
-     * Custom handler for displaying an owner.
+     * Custom handler for displaying an patient.
      *
-     * @param patientId the ID of the owner to display
+     * @param patientId the ID of the patient to display
      * @return a ModelMap with the model attributes for the view
      */
     @RequestMapping("patients/{patientId}")
     public ModelAndView showPatient(@PathVariable("patientId") int patientId) {
         ModelAndView mav = new ModelAndView("patients/patientDetails");
-        mav.addObject(this.clinicService.findOwnerById(patientId));
+        mav.addObject(this.clinicService.findPatientById(patientId));
         return mav;
     }
 }
