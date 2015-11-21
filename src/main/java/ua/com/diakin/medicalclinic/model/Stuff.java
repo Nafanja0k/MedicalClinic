@@ -17,6 +17,7 @@ public class Stuff extends Person{
     @NotEmpty
     protected String jobTitle;
 
+
     public String getJobTitle() {
         return jobTitle;
     }

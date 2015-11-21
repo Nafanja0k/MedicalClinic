@@ -12,11 +12,9 @@ import javax.persistence.*;
 public class Record extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name = "patient_id")
     protected Patient patient;
 
     @ManyToOne
-    @JoinColumn(name = "stuff_id")
     protected Stuff stuff;
 
 

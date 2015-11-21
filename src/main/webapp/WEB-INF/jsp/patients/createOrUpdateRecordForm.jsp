@@ -6,7 +6,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="medicalclinic" tagdir="/WEB-INF/tags" %>
 
 
 <html lang="en">
@@ -22,40 +22,42 @@
 </script>
 <div class="container">
     <jsp:include page="../fragments/bodyHeader.jsp"/>
-<%--
-    <h2><c:if test="${record['new']}">New </c:if>Record</h2>
---%>
 
-    <b>Pet</b>
+    <h2><c:if test="${record['new']}">New </c:if>Record</h2>
+
+
+    <b>Patient</b>
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Birth Date</th>
-            <th>Type</th>
-            <th>Owner</th>
+            <th>Patient ID</th>
+            <th>Patient name</th>
+            <th>Birth date</th>
+            <th>Comment</th>
         </tr>
         </thead>
         <tr>
-<%--            <td><c:out value="${visit.pet.name}"/></td>
-            <td><joda:format value="${visit.pet.birthDate}" pattern="yyyy/MM/dd"/></td>
-            <td><c:out value="${visit.pet.type.name}"/></td>
-            <td><c:out value="${visit.pet.owner.firstName} ${visit.pet.owner.lastName}"/></td>
- --%>       </tr>
+            <td><c:out value="${record.patient.id}"/></td>
+            <td><c:out value="${record.patient.lastName} ${record.patient.firstName} ${record.patient.middleName}"/></td>
+            <td><c:out value="${record.patient.birthDate}"/></td>
+            <td><c:out value="${record.comment}"/></td>
+        </tr>
     </table>
 
- <%--   <form:form modelAttribute="visit">
-
-        <petclinic:inputField label="date" name="date"/>
-        <petclinic:inputField label="description" name="description"/>
---%>
-        <div class="form-actions">
 <%--
-            <input type="hidden" name="petId" value="${visit.pet.id}"/>
---%>
+   <form:form modelAttribute="record">
+
+        <medicalclinic:inputField label="date" name="dateTime"/>
+        <medicalclinic:inputField label="description" name="description"/>
+
+        <div class="form-actions">
+
+            <input type="hidden" name="patientId" value="${record.patient.id}"/>
+
             <button type="submit">Add Visit</button>
         </div>
     </form:form>
+--%>
 
     <br/>
     <b>Previous Visits</b>
@@ -64,15 +66,15 @@
             <th>Date</th>
             <th>Description</th>
         </tr>
- <%--       <c:forEach var="visit" items="${visit.pet.visits}">
-            <c:if test="${!visit['new']}">
+        <c:forEach var="record" items="${record.patient.records}">
+            <c:if test="${!record['new']}">
                 <tr>
-                    <td><joda:format value="${visit.date}" pattern="yyyy/MM/dd"/></td>
-                    <td><c:out value="${visit.description}"/></td>
+                    <%--<td><joda:format value="${record.dateTime}" pattern="yyyy/MM/dd"/></td>--%>
+                    <td><c:out value="${record.comment}"/></td>
                 </tr>
             </c:if>
         </c:forEach>
---%>    </table>
+    </table>
 
 </div>
 <jsp:include page="../fragments/footer.jsp"/>

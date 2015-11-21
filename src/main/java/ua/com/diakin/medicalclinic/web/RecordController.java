@@ -29,8 +29,8 @@ public class RecordController {
         dataBinder.setDisallowedFields("id");
     }
 
-    // Spring MVC calls method loadPetWithVisit(...) before initNewVisitForm is called
-    @ModelAttribute("patientId")
+    // Spring MVC calls method loadPetWithVisit(...) before initNewRecordForm is called
+    @ModelAttribute("record")
     public Record loadPatientWithRecord(@PathVariable("patientId") int patientId) {
         Patient patient = this.clinicService.findPatientById(patientId);
         Record record = new Record();
@@ -39,9 +39,10 @@ public class RecordController {
     }
 
 
-    @RequestMapping(value = "/patients/*/records/new", method = RequestMethod.GET)
-    public  String initCreationForm(Map<String, Object> model){
-        return  "patients/createOrUpdateRecordForm";
+    // Spring MVC calls method loadPetWithVisit(...) before initNewRecordForm is called
+    @RequestMapping(value = "/patients/{patientId}/records/new", method = RequestMethod.GET)
+    public String initNewRecordForm(@PathVariable("patientId") int patientId, Map<String, Object> model) {
+        return "patients/createOrUpdateRecordForm";
     }
 
     // Spring MVC calls method loadPetWithVisit(...) before processNewVisitForm is called
@@ -55,8 +56,9 @@ public class RecordController {
         }
     }
 
+
     @RequestMapping(value = "/patients/{petientId}/records", method = RequestMethod.GET)
-    public String showVisits(@PathVariable int patientId, Map<String, Object> model) {
+    public String showRecords(@PathVariable("patientId") int patientId, Map<String, Object> model) {
         model.put("records", this.clinicService.findPatientById(patientId).getRecords());
         return "recordsList";
     }

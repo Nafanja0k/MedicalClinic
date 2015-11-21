@@ -15,6 +15,11 @@ public class Patient extends Person{
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient", fetch = FetchType.EAGER)
     private Set<Record> records;
+/*
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient", fetch = FetchType.EAGER)
+    private Set<Stuff> stuff;
+*/
 
     protected Set<Record> getRecordsInternal() {
         if (this.records == null) {
