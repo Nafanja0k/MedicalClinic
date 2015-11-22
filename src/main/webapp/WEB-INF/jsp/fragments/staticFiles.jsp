@@ -28,6 +28,11 @@ PetClinic :: a Spring Framework demonstration
     <!-- jquery-ui.css file is not that big so we can afford to load it -->
     <spring:url value="/webjars/jquery-ui/1.10.3/themes/base/jquery-ui.css" var="jQueryUiCss"/>
     <link href="${jQueryUiCss}" rel="stylesheet"/>
+
+    <link rel="stylesheet" media="all" type="text/css" href="/webjars/jQuery-Timepicker-Addon/1.5.3/src/jquery-ui-timepicker-addon.css" />
+    <script src="/webjars/jQuery-Timepicker-Addon/1.5.3/dist/jquery-ui-timepicker-addon.js"></script>
+    <script src="/webjars/jQuery-Timepicker-Addon/1.5.3/dist/jquery-ui-sliderAccess.js"></script>
+    <%--<script src="/webjars/jQuery-Timepicker-Addon/1.5.3/src/i18n/jquery-ui-timepicker-addon-i18n.js"></script>--%>
 </head>
 
 

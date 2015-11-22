@@ -75,6 +75,7 @@
           <element id="library" level="project" name="Maven: org.webjars:bootstrap:2.3.0" />
           <element id="library" level="project" name="Maven: org.webjars:jquery-ui:1.10.3" />
           <element id="library" level="project" name="Maven: org.webjars:jquery:2.0.3-1" />
+          <element id="library" level="project" name="Maven: org.webjars.bower:jQuery-Timepicker-Addon:1.5.3" />
           <element id="library" level="project" name="Maven: com.github.dandelion:dandelion-jsp:1.1.1" />
           <element id="library" level="project" name="Maven: com.github.dandelion:dandelion-core:1.1.1" />
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.4" />

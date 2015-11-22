@@ -15,10 +15,20 @@
 
 
 <body>
-<script>
+<script type="text/javascript">
+
     $(function () {
-        $("#date").datepicker({dateFormat: 'yy/mm/dd'});
-    });
+
+        $("#dateTime").datetimepicker({
+//            addSliderAccess: true,
+            timeInput: true,
+            timeFormat: "HH:mm",
+            dateFormat: "dd-mm-yy",
+            stepMinute: 15,
+//            autoSize: true,
+//            sliderAccessArgs: { touchonly: false }
+        }).datepicker("setDate", new Date());
+    })
 </script>
 <div class="container">
     <jsp:include page="../fragments/bodyHeader.jsp"/>
@@ -44,11 +54,11 @@
         </tr>
     </table>
 
-<%--
-   <form:form modelAttribute="record">
 
-        <medicalclinic:inputField label="date" name="dateTime"/>
-        <medicalclinic:inputField label="description" name="description"/>
+   <form:form modelAttribute="record">
+        <medicalclinic:selectField label="Doctor" name="stuff"  names="${stuff}" size="5"/>
+        <medicalclinic:inputField label="Date and time" name="dateTime"/>
+        <medicalclinic:inputField label="comment" name="comment"/>
 
         <div class="form-actions">
 
@@ -57,7 +67,7 @@
             <button type="submit">Add Visit</button>
         </div>
     </form:form>
---%>
+
 
     <br/>
     <b>Previous Visits</b>
@@ -69,7 +79,7 @@
         <c:forEach var="record" items="${record.patient.records}">
             <c:if test="${!record['new']}">
                 <tr>
-                    <%--<td><joda:format value="${record.dateTime}" pattern="yyyy/MM/dd"/></td>--%>
+                    <td><c:out value="${record.dateTime}"/></td>
                     <td><c:out value="${record.comment}"/></td>
                 </tr>
             </c:if>

@@ -1,20 +1,28 @@
 package ua.com.diakin.medicalclinic.repository.jpa;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ua.com.diakin.medicalclinic.model.Record;
+import ua.com.diakin.medicalclinic.model.Stuff;
 import ua.com.diakin.medicalclinic.repository.RecordRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Admin on 20.11.2015.
  */
 @Repository
 public class JpaRecordRepositoryImpl implements RecordRepository {
+
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @PersistenceContext
     private EntityManager em;
@@ -33,7 +41,15 @@ public class JpaRecordRepositoryImpl implements RecordRepository {
         } else {
             this.em.merge(record);
         }
+    }
 
+    @Override
+    public List<Stuff> stuff() throws DataAccessException {
+        Map<String, Object> params = new HashMap<>();
+        return this.namedParameterJdbcTemplate.query(
+                "SELECT id, last_name FROM stuff ORDER BY lastname",
+                params,
+                BeanPropertyRowMapper.newInstance(Stuff.class));
 
     }
 }

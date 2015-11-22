@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by Admin on 18.11.2015.
@@ -49,6 +50,11 @@ public class JpaStuffRepositoryImpl implements StuffRepository{
         } else {
             this.em.merge(stuff);
         }
+    }
 
+    @Override
+    public List<Stuff> getStuff() throws DataAccessException {
+        Query query = this.em.createQuery("SELECT DISTINCT stuff FROM Stuff stuff");
+        return query.getResultList();
     }
 }

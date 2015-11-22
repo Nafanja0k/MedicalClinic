@@ -12,6 +12,7 @@ import ua.com.diakin.medicalclinic.repository.PatientRepository;
 import ua.com.diakin.medicalclinic.repository.StuffRepository;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by Admin on 18.11.2015.
@@ -81,4 +82,8 @@ public class ClinicServiceImpl implements ClinicService{
         recordRepository.save(record);
     }
 
+    @Override
+    public Collection<Stuff> getStuff() throws DataAccessException {
+        return stuffRepository.getStuff();
+    }
 }

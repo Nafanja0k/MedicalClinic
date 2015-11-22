@@ -5,6 +5,7 @@ import ua.com.diakin.medicalclinic.model.BaseEntity;
 import ua.com.diakin.medicalclinic.model.Stuff;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Repository class for <code>Stuff</code> domain objects All method names are compliant with Spring Data naming
@@ -39,5 +40,6 @@ public interface StuffRepository {
      */
     void save(Stuff stuff) throws DataAccessException;
 
+    Collection<Stuff> getStuff() throws DataAccessException;
 
 }

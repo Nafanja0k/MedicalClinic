@@ -1,5 +1,7 @@
 package ua.com.diakin.medicalclinic.service;
 import java.util.Collection;
+import java.util.List;
+
 import org.springframework.dao.DataAccessException;
 import ua.com.diakin.medicalclinic.model.Patient;
 import ua.com.diakin.medicalclinic.model.Record;
@@ -24,5 +26,5 @@ public interface ClinicService {
     // Record
     Collection<Record> findByPatientId(int id) throws DataAccessException;
     void saveRecord(Record record) throws DataAccessException;
-
+    Collection<Stuff> getStuff() throws DataAccessException;
 }

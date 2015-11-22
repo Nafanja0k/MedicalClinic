@@ -7,9 +7,11 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import ua.com.diakin.medicalclinic.model.Patient;
 import ua.com.diakin.medicalclinic.model.Record;
+import ua.com.diakin.medicalclinic.model.Stuff;
 import ua.com.diakin.medicalclinic.service.ClinicService;
 
 import javax.validation.Valid;
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -36,6 +38,11 @@ public class RecordController {
         Record record = new Record();
         patient.addRecord(record);
         return record;
+    }
+
+    @ModelAttribute("stuff")
+    public Collection<Stuff> populateStuff() {
+        return this.clinicService.getStuff();
     }
 
 

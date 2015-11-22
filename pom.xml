@@ -239,6 +239,12 @@
             <artifactId>jquery</artifactId>
             <version>${webjars-jquery.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>jQuery-Timepicker-Addon</artifactId>
+            <version>1.5.3</version>
+        </dependency>
+
 
         <!-- Test Artifacts -->
         <dependency>
