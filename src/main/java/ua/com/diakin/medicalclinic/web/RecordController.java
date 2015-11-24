@@ -2,6 +2,7 @@ package ua.com.diakin.medicalclinic.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -52,12 +53,14 @@ public class RecordController {
         return "patients/createOrUpdateRecordForm";
     }
 
-    // Spring MVC calls method loadPetWithVisit(...) before processNewVisitForm is called
+    // Spring MVC calls method loadPetWithVisit(...) before processNewRecordForm is called
     @RequestMapping(value = "/patients/{patientId}/records/new", method = RequestMethod.POST)
-    public String processNewVisitForm(@Valid Record record, BindingResult result) {
+    public String processNewRecordForm(@Valid Record record, Stuff stuff, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
+            model.put("stuff", stuff);
             return "patients/createOrUpdateRecordForm";
         } else {
+            record.setStuff(stuff);
             this.clinicService.saveRecord(record);
             return "redirect:/patients/{patientId}";
         }

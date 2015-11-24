@@ -14,7 +14,7 @@ public class Record extends BaseEntity {
     @ManyToOne
     protected Patient patient;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     protected Stuff stuff;
 
 

@@ -30,6 +30,7 @@ public class ClinicServiceImpl implements ClinicService{
                              RecordRepository recordRepository){
         this.patientRepository = patientRepository;
         this.stuffRepository = stuffRepository;
+        this.recordRepository = recordRepository;
     }
 
     //Patient

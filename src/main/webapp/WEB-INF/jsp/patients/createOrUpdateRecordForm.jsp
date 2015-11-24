@@ -22,9 +22,9 @@
         $("#dateTime").datetimepicker({
 //            addSliderAccess: true,
             timeInput: true,
-            timeFormat: "HH:mm",
-            dateFormat: "dd-mm-yy",
-            stepMinute: 15,
+            timeFormat: "HH:mm:ss",
+            dateFormat: "yy-mm-dd",
+//            stepMinute: 15,
 //            autoSize: true,
 //            sliderAccessArgs: { touchonly: false }
         }).datepicker("setDate", new Date());
@@ -56,14 +56,19 @@
 
 
    <form:form modelAttribute="record">
-        <medicalclinic:selectField label="Doctor" name="stuff"  names="${stuff}" size="5"/>
+        <%--<medicalclinic:selectField label="Doctor" name="stuff"  names="${stuff.size()}" size="5"/>--%>
+       <select id="stuff">
+           <c:forEach var="item" items="${stuff}">
+               <option value="${item}"><c:out value="${item.lastName} ${item.firstName} ${item.middleName} : ${item.jobTitle}"/></option>
+           </c:forEach>
+       </select>
         <medicalclinic:inputField label="Date and time" name="dateTime"/>
         <medicalclinic:inputField label="comment" name="comment"/>
 
         <div class="form-actions">
 
             <input type="hidden" name="patientId" value="${record.patient.id}"/>
-
+            <input type="hidden" name="stuffId" value="${record.stuff.id}"/>
             <button type="submit">Add Visit</button>
         </div>
     </form:form>
@@ -71,15 +76,21 @@
 
     <br/>
     <b>Previous Visits</b>
-    <table style="width: 333px;">
+    <table style="width: 100%;">
         <tr>
             <th>Date</th>
-            <th>Description</th>
+            <th>Stuff</th>
+        </tr>
+        <tr>
+            <th>Details</th>
         </tr>
         <c:forEach var="record" items="${record.patient.records}">
             <c:if test="${!record['new']}">
                 <tr>
                     <td><c:out value="${record.dateTime}"/></td>
+                    <td><c:out value="${record.stuff.lastName} ${record.stuff.firstName} ${record.stuff.middleName} : ${record.stuff.jobTitle}"/></td>
+                </tr>
+                <tr>
                     <td><c:out value="${record.comment}"/></td>
                 </tr>
             </c:if>
