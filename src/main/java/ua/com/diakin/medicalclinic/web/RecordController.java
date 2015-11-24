@@ -42,10 +42,9 @@ public class RecordController {
     }
 
     @ModelAttribute("stuff")
-    public Collection<Stuff> populateStuff() {
+    public Collection<Stuff> populateStuffList() {
         return this.clinicService.getStuff();
     }
-
 
     // Spring MVC calls method loadPetWithVisit(...) before initNewRecordForm is called
     @RequestMapping(value = "/patients/{patientId}/records/new", method = RequestMethod.GET)
@@ -67,7 +66,7 @@ public class RecordController {
     }
 
 
-    @RequestMapping(value = "/patients/{petientId}/records", method = RequestMethod.GET)
+    @RequestMapping(value = "/patients/{patientId}/records", method = RequestMethod.GET)
     public String showRecords(@PathVariable("patientId") int patientId, Map<String, Object> model) {
         model.put("records", this.clinicService.findPatientById(patientId).getRecords());
         return "recordsList";
