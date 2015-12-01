@@ -63,8 +63,8 @@
 
     </beans>
 
-    <beans profile="jdbc">
-        <!-- Transaction manager for a single JDBC DataSource (alternative to JTA) -->
+<!--    <beans profile="jdbc">
+        &lt;!&ndash; Transaction manager for a single JDBC DataSource (alternative to JTA) &ndash;&gt;
         <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
               p:dataSource-ref="dataSource"/>
 
@@ -77,8 +77,8 @@
             <constructor-arg ref="dataSource"/>
         </bean>
 
-        <context:component-scan base-package="org.springframework.samples.medicalclinic.repository.jdbc"/>
-    </beans>
+        <context:component-scan base-package="ua.com.diakin.medicalclinic.repository.jdbc"/>
+    </beans>-->
 
     <beans profile="jpa">
         <!--
@@ -93,4 +93,6 @@
     <!--<beans profile="spring-data-jpa">-->
         <!--<jpa:repositories base-package="org.springframework.samples.medicalclinic.repository.springdatajpa"/>-->
     <!--</beans>-->
+
+
 </beans>

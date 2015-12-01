@@ -57,4 +57,12 @@
         <!-- needed otherwise exceptions won't be logged anywhere -->
     </bean>
 
+    <bean id="multipartResolver"
+                class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+        <!-- setting maximum upload size -->
+        <property name="maxUploadSize" value="25000000" />
+
+    </bean>
+
 </beans>
