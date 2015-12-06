@@ -4,15 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ua.com.diakin.medicalclinic.model.File;
 import ua.com.diakin.medicalclinic.model.Patient;
 import ua.com.diakin.medicalclinic.model.Record;
 import ua.com.diakin.medicalclinic.model.Stuff;
+import ua.com.diakin.medicalclinic.repository.FileRepository;
 import ua.com.diakin.medicalclinic.repository.RecordRepository;
 import ua.com.diakin.medicalclinic.repository.PatientRepository;
 import ua.com.diakin.medicalclinic.repository.StuffRepository;
 
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Created by Admin on 18.11.2015.
@@ -23,14 +24,17 @@ public class ClinicServiceImpl implements ClinicService{
     private PatientRepository patientRepository;
     private StuffRepository stuffRepository;
     private RecordRepository recordRepository;
+    private FileRepository fileRepository;
 
     @Autowired
     public ClinicServiceImpl(PatientRepository patientRepository,
                              StuffRepository stuffRepository,
-                             RecordRepository recordRepository){
+                             RecordRepository recordRepository,
+                             FileRepository fileRepository){
         this.patientRepository = patientRepository;
         this.stuffRepository = stuffRepository;
         this.recordRepository = recordRepository;
+        this.fileRepository = fileRepository;
     }
 
     //Patient
@@ -73,8 +77,13 @@ public class ClinicServiceImpl implements ClinicService{
 
     @Override
     @Transactional(readOnly = true)
-    public Collection<Record> findByPatientId(int id) throws DataAccessException {
-        return recordRepository.findByPatientId(id);
+    public Collection<Record> findRecordsByPatientId(int id) throws DataAccessException {
+        return recordRepository.findRecordsByPatientId(id);
+    }
+
+    @Override
+    public Record findRecordById(int id) throws DataAccessException {
+        return recordRepository.findRecordById(id);
     }
 
     @Override
@@ -84,7 +93,25 @@ public class ClinicServiceImpl implements ClinicService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Collection<Stuff> getStuff() throws DataAccessException {
         return stuffRepository.getStuff();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public File findFileById(int id) throws DataAccessException {
+        return fileRepository.findFileById(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Collection<File> findFileByRecordId(int id) throws DataAccessException {
+        return fileRepository.findFileByRecordId(id);
+    }
+
+    @Override
+    public void save(File file) throws DataAccessException {
+        fileRepository.save(file);
     }
 }

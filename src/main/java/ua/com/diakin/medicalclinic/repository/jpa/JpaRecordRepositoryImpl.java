@@ -28,12 +28,18 @@ public class JpaRecordRepositoryImpl implements RecordRepository {
     private EntityManager em;
 
     @Override
-    public Collection<Record> findByPatientId(int id) throws DataAccessException {
-        Query query = this.em.createQuery("SELECT record FROM Record r where r.record.id= :id");
+    public Collection<Record> findRecordsByPatientId(int id) throws DataAccessException {
+        Query query = this.em.createQuery("SELECT record FROM Record record WHERE record.patient.id = :id");
         query.setParameter("id", id);
         return query.getResultList();
     }
 
+    @Override
+    public Record findRecordById(int id) throws DataAccessException {
+        Query query = this.em.createQuery("SELECT record FROM Record record WHERE record.id = :id");
+        query.setParameter("id", id);
+        return (Record) query.getSingleResult();
+    }
     @Override
     public void save(Record record) throws DataAccessException {
         if (record.getId() == null) {

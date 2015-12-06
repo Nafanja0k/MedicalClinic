@@ -35,7 +35,7 @@ public class Patient extends Person{
 
     public List<Record> getRecords() {
         List<Record> sortedRecords = new ArrayList<>(getRecordsInternal());
-        PropertyComparator.sort(sortedRecords, new MutableSortDefinition("date", false, false));
+//        PropertyComparator.sort(sortedRecords, new MutableSortDefinition("date", false, false));
         return Collections.unmodifiableList(sortedRecords);
     }
 

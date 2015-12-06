@@ -12,7 +12,8 @@ import java.util.List;
  */
 public interface RecordRepository {
 
-    Collection<Record> findByPatientId(int id) throws DataAccessException;
+    Collection<Record> findRecordsByPatientId(int id) throws DataAccessException;
+    Record findRecordById(int id) throws DataAccessException;
     void save(Record record) throws DataAccessException;
     List<Stuff> stuff() throws DataAccessException;
 }

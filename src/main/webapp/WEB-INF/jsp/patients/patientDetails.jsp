@@ -36,18 +36,18 @@
         </tr>--%>
         <tr>
             <td>
-                <spring:url value="{patientId}/edit.html" var="editUrl">
+                <spring:url value="/patients/{patientId}/edit.html" var="editUrl">
                     <spring:param name="patientId" value="${patient.id}"/>
                 </spring:url>
                 <a href="${fn:escapeXml(editUrl)}" class="btn btn-info">Edit Patient</a></td>
             <td>
-                <spring:url value="{patientId}/records/new.html" var="addUrl">
+                <spring:url value="/patients/{patientId}/records/new.html" var="addUrl">
                     <spring:param name="patientId" value="${patient.id}"/>
                 </spring:url>
                 <a href="${fn:escapeXml(addUrl)}" class="btn btn-success">Add New Record</a></td>
         </tr>
     </table>
-    <h2>Pets and Visits</h2>
+    <h2>Records</h2>
         <table class="table" style="width:600px;">
             <tr>
                 <td valign="top" style="width: 120px;">
@@ -66,7 +66,7 @@
                     <table class="table-condensed">
                         <thead>
                         <tr>
-                            <th>Visit Date</th>
+                            <th>Record Date</th>
                             <th>Description</th>
                         </tr>
                         </thead>
@@ -74,6 +74,12 @@
                             <tr>
                                 <td><c:out value="${record.dateTime}"/></td>
                                 <td><c:out value="${record.comment}"/></td>
+                                <td>
+                                    <spring:url value="/patients/{patientId}/records/{recordId}/edit" var="recordUrl">
+                                        <spring:param name="patientId" value="${patient.id}"/>
+                                        <spring:param name="recordId" value="${record.id}"/>
+                                    </spring:url>
+                                    <a href="${fn:escapeXml(recordUrl)}">Edit Record</a></td>
                             </tr>
                         </c:forEach>
                         <tr>
