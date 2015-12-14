@@ -18,7 +18,7 @@
 
     <!--
         Simply defining this bean will cause requests to owner names to be saved.
-        This aspect is defined in medicalclinic.jar's META-INF/aop.xml file.
+        This aspect is defined in medicalclinic.jar's META-INF/aop.xml uploadFile.
         Note that we can dependency inject this bean like any other bean.
     -->
     <aop:aspectj-autoproxy>

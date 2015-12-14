@@ -35,7 +35,7 @@ public interface StuffRepository {
     /**
      * Save an <code>Stuff</code> to the data store, either inserting or updating it.
      *
-     * @param stuff the <code>Stuff</code> to save
+     * @param stuff the <code>Stuff</code> to saveFile
      * @see BaseEntity#isNew
      */
     void save(Stuff stuff) throws DataAccessException;

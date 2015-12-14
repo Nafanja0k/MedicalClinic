@@ -18,7 +18,7 @@
     <context:component-scan
         base-package="ua.com.diakin.medicalclinic.service"/>
 
-    <!-- Configurer that replaces ${...} placeholders with values from a properties file -->
+    <!-- Configurer that replaces ${...} placeholders with values from a properties uploadFile -->
     <!-- (in this case, JDBC-related settings for the JPA EntityManager definition below) -->
     <context:property-placeholder location="classpath:spring/data-access.properties" system-properties-mode="OVERRIDE"/>
 
@@ -41,7 +41,7 @@
                       p:database="${jpa.database}" p:showSql="${jpa.showSql}"/>
                 <!-- the 'database' parameter refers to the database dialect being used.
                 	By default, Hibernate will use a 'HSQL' dialect because 'jpa.database' has been set to 'HSQL'
-                	inside file spring/data-access.properties
+                	inside uploadFile spring/data-access.properties
 
                  -->
             </property>

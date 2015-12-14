@@ -3,6 +3,8 @@ package ua.com.diakin.medicalclinic.model;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Set;
 
 /**
  * Created by Admin on 20.11.2015.
@@ -16,6 +18,9 @@ public class Record extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     protected Stuff stuff;
+
+    @OneToMany
+    protected Collection<UploadFile> uploadedFiles;
 
 
     @Column(name = "patient_record_datetime")
@@ -56,6 +61,14 @@ public class Record extends BaseEntity {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public Collection<UploadFile> getUploadedFiles() {
+        return uploadedFiles;
+    }
+
+    public void setUploadedFiles(Set<UploadFile> uploadedFiles) {
+        this.uploadedFiles = uploadedFiles;
     }
 }
 

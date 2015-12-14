@@ -1,9 +1,8 @@
 package ua.com.diakin.medicalclinic.service;
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.dao.DataAccessException;
-import ua.com.diakin.medicalclinic.model.File;
+import ua.com.diakin.medicalclinic.model.UploadFile;
 import ua.com.diakin.medicalclinic.model.Patient;
 import ua.com.diakin.medicalclinic.model.Record;
 import ua.com.diakin.medicalclinic.model.Stuff;
@@ -30,9 +29,9 @@ public interface ClinicService {
     void saveRecord(Record record) throws DataAccessException;
     Collection<Stuff> getStuff() throws DataAccessException;
 
-    //File
-    File findFileById(int id) throws DataAccessException;
-    Collection<File> findFileByRecordId(int id) throws DataAccessException;
-    void save(File file) throws DataAccessException;
+    //UploadFile
+    UploadFile findFileById(int id) throws DataAccessException;
+    Collection<UploadFile> findFilesByRecordId(int id) throws DataAccessException;
+    void saveFile(UploadFile uploadFile) throws DataAccessException;
 
 }

@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.com.diakin.medicalclinic.model.File;
+import ua.com.diakin.medicalclinic.model.UploadFile;
 import ua.com.diakin.medicalclinic.model.Patient;
 import ua.com.diakin.medicalclinic.model.Record;
 import ua.com.diakin.medicalclinic.model.Stuff;
-import ua.com.diakin.medicalclinic.repository.FileRepository;
+import ua.com.diakin.medicalclinic.repository.UploadFileRepository;
 import ua.com.diakin.medicalclinic.repository.RecordRepository;
 import ua.com.diakin.medicalclinic.repository.PatientRepository;
 import ua.com.diakin.medicalclinic.repository.StuffRepository;
@@ -24,17 +24,17 @@ public class ClinicServiceImpl implements ClinicService{
     private PatientRepository patientRepository;
     private StuffRepository stuffRepository;
     private RecordRepository recordRepository;
-    private FileRepository fileRepository;
+    private UploadFileRepository uploadFileRepository;
 
     @Autowired
     public ClinicServiceImpl(PatientRepository patientRepository,
                              StuffRepository stuffRepository,
                              RecordRepository recordRepository,
-                             FileRepository fileRepository){
+                             UploadFileRepository uploadFileRepository){
         this.patientRepository = patientRepository;
         this.stuffRepository = stuffRepository;
         this.recordRepository = recordRepository;
-        this.fileRepository = fileRepository;
+        this.uploadFileRepository = uploadFileRepository;
     }
 
     //Patient
@@ -82,6 +82,7 @@ public class ClinicServiceImpl implements ClinicService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Record findRecordById(int id) throws DataAccessException {
         return recordRepository.findRecordById(id);
     }
@@ -100,18 +101,19 @@ public class ClinicServiceImpl implements ClinicService{
 
     @Override
     @Transactional(readOnly = true)
-    public File findFileById(int id) throws DataAccessException {
-        return fileRepository.findFileById(id);
+    public UploadFile findFileById(int id) throws DataAccessException {
+        return uploadFileRepository.findFileById(id);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Collection<File> findFileByRecordId(int id) throws DataAccessException {
-        return fileRepository.findFileByRecordId(id);
+    public Collection<UploadFile> findFilesByRecordId(int id) throws DataAccessException {
+        return uploadFileRepository.getFilesByRecordId(id);
     }
 
     @Override
-    public void save(File file) throws DataAccessException {
-        fileRepository.save(file);
+    @Transactional
+    public void saveFile(UploadFile uploadFile) throws DataAccessException {
+        uploadFileRepository.save(uploadFile);
     }
 }

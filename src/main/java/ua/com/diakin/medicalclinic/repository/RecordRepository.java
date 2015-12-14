@@ -3,6 +3,7 @@ package ua.com.diakin.medicalclinic.repository;
 import org.springframework.dao.DataAccessException;
 import ua.com.diakin.medicalclinic.model.Record;
 import ua.com.diakin.medicalclinic.model.Stuff;
+import ua.com.diakin.medicalclinic.model.UploadFile;
 
 import java.util.Collection;
 import java.util.List;

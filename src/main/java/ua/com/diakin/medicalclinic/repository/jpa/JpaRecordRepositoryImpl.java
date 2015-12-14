@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ua.com.diakin.medicalclinic.model.Record;
 import ua.com.diakin.medicalclinic.model.Stuff;
+import ua.com.diakin.medicalclinic.model.UploadFile;
 import ua.com.diakin.medicalclinic.repository.RecordRepository;
 
 import javax.persistence.EntityManager;
@@ -58,4 +59,6 @@ public class JpaRecordRepositoryImpl implements RecordRepository {
                 BeanPropertyRowMapper.newInstance(Stuff.class));
 
     }
+
+
 }

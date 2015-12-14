@@ -88,7 +88,7 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!--  	No need for welcome-file declaration here.
+    <!--  	No need for welcome-uploadFile declaration here.
     		See inside spring/mvc-core-config.xml :
     		<mvc:view-controller path="/" view-name="welcome" />
     -->

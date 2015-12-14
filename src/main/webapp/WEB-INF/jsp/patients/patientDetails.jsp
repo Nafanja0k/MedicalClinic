@@ -52,14 +52,7 @@
             <tr>
                 <td valign="top" style="width: 120px;">
                     <dl class="dl-horizontal">
-<%--
-                        <dt>Name</dt>
-                        <dd><c:out value="${pet.name}"/></dd>
-                        <dt>Birth Date</dt>
-                        <dd><joda:format value="${pet.birthDate}" pattern="yyyy-MM-dd"/></dd>
-                        <dt>Type</dt>
-                        <dd><c:out value="${pet.type.name}"/></dd>
---%>
+
                     </dl>
                 </td>
                 <td valign="top">
@@ -73,6 +66,7 @@
                         <c:forEach var="record" items="${patient.records}">
                             <tr>
                                 <td><c:out value="${record.dateTime}"/></td>
+                                <td><c:out value="${record.stuff.firstName} ${record.stuff.middleName} ${record.stuff.lastName}"/></td>
                                 <td><c:out value="${record.comment}"/></td>
                                 <td>
                                     <spring:url value="/patients/{patientId}/records/{recordId}/edit" var="recordUrl">

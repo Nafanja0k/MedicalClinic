@@ -18,7 +18,7 @@
 
     <!-- ========================= DATASOURCE DEFINITION ========================= -->
 
-    <!-- Configurer that replaces ${...} placeholders with values from a properties file -->
+    <!-- Configurer that replaces ${...} placeholders with values from a properties uploadFile -->
     <!-- (in this case, JDBC-related settings for the dataSource definition below) -->
     <context:property-placeholder location="classpath:spring/data-access.properties" system-properties-mode="OVERRIDE"/>
 

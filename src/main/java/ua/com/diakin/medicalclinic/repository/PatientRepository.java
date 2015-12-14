@@ -34,7 +34,7 @@ public interface PatientRepository {
     /**
      * Save an <code>Patient</code> to the data store, either inserting or updating it.
      *
-     * @param patient the <code>Patient</code> to save
+     * @param patient the <code>Patient</code> to saveFile
      * @see BaseEntity#isNew
      */
     void save(Patient patient) throws DataAccessException;

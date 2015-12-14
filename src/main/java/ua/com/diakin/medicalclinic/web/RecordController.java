@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ua.com.diakin.medicalclinic.model.Patient;
 import ua.com.diakin.medicalclinic.model.Record;
 import ua.com.diakin.medicalclinic.model.Stuff;
+import ua.com.diakin.medicalclinic.model.UploadFile;
 import ua.com.diakin.medicalclinic.service.ClinicService;
 
 import javax.validation.Valid;
@@ -46,6 +47,12 @@ public class RecordController {
     @ModelAttribute("stuff")
     public Collection<Stuff> populateStuffList() {
         return this.clinicService.getStuff();
+    }
+
+
+    @ModelAttribute("uploadedFiles")
+    public Collection<UploadFile> loadRecordFiles(@PathVariable("recordId") int recordId) {
+        return this.clinicService.findFilesByRecordId(recordId);
     }
 
     // Spring MVC calls method loadPatientWithVisit(...) before initNewRecordForm is called

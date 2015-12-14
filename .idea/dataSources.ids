@@ -139,16 +139,35 @@
         <mandatory>1</mandatory>
         <data-type>int(10) unsigned</data-type>
       </column>
-      <column id="38" parent="6" name="image">
-        <data-type>blob</data-type>
+      <column id="38" parent="6" name="data">
+        <mandatory>1</mandatory>
+        <data-type>longblob</data-type>
       </column>
       <column id="39" parent="6" name="comment">
         <data-type>varchar(255)</data-type>
       </column>
-      <key id="40" parent="6" name="PRIMARY">
+      <column id="40" parent="6" name="file_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="41" parent="6" name="record_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="42" parent="6" name="content_type">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <key id="43" parent="6" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
+      <foreign-key id="44" parent="6" name="files_patient_records_id_fk">
+        <columns>record_id</columns>
+        <ref-key>patient_records.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
     </database-model>
   </data-source>
 </component>
