@@ -65,19 +65,16 @@
         <medicalclinic:inputField label="Date and time" name="dateTime"/>
         <medicalclinic:inputField label="comment" name="comment"/>
 
-        <c:choose>
-            <c:when test="${record['new']}">
-                <div>To upload files you should save Record first</div>
-             </c:when>
-            <c:otherwise>
-                <form method="post" action="/upload" enctype="multipart/form-data">
-                    <input type="file" name="file"/>
-                    <input type="submit"/>
-                </form>
-             </c:otherwise>
-        </c:choose>
+        <div>
+            <c:forEach var="file" items="${uploadedFiles}">
+                <a href="${pageContext.request.contextPath}/download/${file.id}.html">
+                    <c:out value="${file.fileName}"></c:out>
+                </a>
+            </c:forEach>
+        </div>
 
-    <div class="form-actions">
+       <div class="form-actions">
+
 
             <input type="hidden" name="patientId" value="${record.patient.id}"/>
             <input type="hidden" name="stuffId" value="${record.stuff.id}"/>
@@ -86,11 +83,26 @@
                         <button type="submit">Add Record</button>
                     </c:when>
                     <c:otherwise>
-                        <button type="submit">Edit Record</button>
+                        <button type="submit">Update Record</button>
                     </c:otherwise>
                 </c:choose>
-        </div>
-    </form:form>
+   </form:form>
+
+       </div>
+
+    <c:choose>
+        <c:when test="${record['new']}">
+            <div>To upload files you should save Record first</div>
+        </c:when>
+        <c:otherwise>
+            <form:form method="post" action="/uploadToRecord" enctype="multipart/form-data">
+                <input type="hidden" name="currentUrl" value="${requestScope['javax.servlet.forward.request_uri']}"/>
+                <input type="hidden" name="recordId" value="${record.id}"/>
+                <input type="file" name="file"/>
+                <input type="submit"/>
+            </form:form>
+        </c:otherwise>
+    </c:choose>
 
 
     <br/>
